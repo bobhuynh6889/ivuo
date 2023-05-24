@@ -10,12 +10,14 @@ import {
 import React, {useState} from 'react';
 
 // library
-import AntIcon from 'react-native-vector-icons/AntDesign';
+// import AntIcon from 'react-native-vector-icons/AntDesign';
 
 // services
 import Routes from '../../navigation/Routes';
 import NavigationService from '../../navigation';
 import {colorPrimary} from '../../constants/color';
+import Fonts from '../../constants/Fonts';
+import {customTxt} from '../../constants/fontStyle';
 
 // component
 import Button from '../../components/Button';
@@ -38,9 +40,15 @@ export default function ForgotPassword() {
   const renderTitle = () => {
     return (
       <View style={styles.ctnTitle}>
-        <Text style={styles.titleStyle}>Password Recovery</Text>
-        <Text style={styles.contentStyle}>Please enter your email address</Text>
-        <Text style={styles.contentStyle}>to recover your password</Text>
+        <Text style={customTxt(Fonts.Bold, 24, '#FFFFFF').txt}>
+          Password Recovery
+        </Text>
+        <Text style={customTxt(Fonts.SemiBold, 18, '#FFFFFF').txt}>
+          Please enter your email address
+        </Text>
+        <Text style={customTxt(Fonts.SemiBold, 18, '#FFFFFF').txt}>
+          to recover your password
+        </Text>
       </View>
     );
   };
@@ -54,24 +62,23 @@ export default function ForgotPassword() {
     secureTextEntry?: boolean,
   ) => {
     return (
-      <View style={value ? styles.ctnInputActive : styles.ctnInput}>
+      <View style={{marginBottom: 20}}>
         <View style={styles.ctnTitleInput}>
-          <AntIcon
-            name={iconName}
-            size={30}
-            color={value ? colorPrimary : '#A9A9A9CC'}
-          />
-          <Text style={{color: '#32343899', marginLeft: 8}}>{title}</Text>
+          <Text style={customTxt(Fonts.Bold, 16, '#FFFFFF').txt}>{title}</Text>
         </View>
         <View style={styles.ctnTextInput}>
           <View style={{flex: 1}}>
             <TextInput
               placeholder={placeholder}
-              style={[styles.textInputStyle, {width: '100%'}]}
+              style={[
+                customTxt(Fonts.SemiBold, 16, '#FFFFFF').txt,
+                {width: '100%'},
+              ]}
               value={value}
               onChangeText={(text: any) => setValue(text)}
               secureTextEntry={secureTextEntry || false}
               autoCapitalize={'none'}
+              placeholderTextColor={'#999999'}
             />
           </View>
         </View>
@@ -116,8 +123,8 @@ export default function ForgotPassword() {
           text="Send Email"
           stylesText={
             checkDisableBtnRegister()
-              ? styles.textRegisterStyle
-              : styles.textRegisterStyleActive
+              ? customTxt(Fonts.Bold, 18, '#A9A9A9').txt
+              : customTxt(Fonts.Bold, 18, '#FFFFFF').txt
           }
           viewStyle={
             checkDisableBtnRegister()
@@ -152,7 +159,7 @@ export default function ForgotPassword() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#F4F6FA',
+    backgroundColor: '#010919',
   },
   ctnLogo: {
     marginHorizontal: 20,
@@ -195,11 +202,16 @@ const styles = StyleSheet.create({
   ctnTitleInput: {
     flexDirection: 'row',
     alignItems: 'center',
+    marginBottom: 6,
   },
   ctnTextInput: {
     flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'space-between',
+    backgroundColor: '#1A2230',
+    height: 52,
+    borderRadius: 8,
+    paddingHorizontal: 15,
   },
   textInputStyle: {
     marginTop: 13,

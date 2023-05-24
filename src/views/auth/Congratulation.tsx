@@ -5,6 +5,7 @@ import {
   SafeAreaView,
   Image,
   ScrollView,
+  StatusBar,
 } from 'react-native';
 import React, {useState} from 'react';
 
@@ -12,6 +13,8 @@ import React, {useState} from 'react';
 import Routes from '../../navigation/Routes';
 import NavigationService from '../../navigation';
 import {colorPrimary} from '../../constants/color';
+import Fonts from '../../constants/Fonts';
+import {customTxt} from '../../constants/fontStyle';
 
 // component
 import Button from '../../components/Button';
@@ -34,11 +37,15 @@ export default function Congratulation() {
   const renderTitle = () => {
     return (
       <View style={styles.ctnTitle}>
-        <Text style={styles.titleStyle}>Congratulations!</Text>
-        <Text style={styles.contentStyle}>
+        <Text style={customTxt(Fonts.Bold, 24, '#FFFFFF').txt}>
+          Congratulations!
+        </Text>
+        <Text style={customTxt(Fonts.SemiBold, 18, '#FFFFFF').txt}>
           You successfully rest your password.
         </Text>
-        <Text style={styles.contentStyle}>Now you are good to go.</Text>
+        <Text style={customTxt(Fonts.SemiBold, 18, '#FFFFFF').txt}>
+          Now you are good to go.
+        </Text>
       </View>
     );
   };
@@ -66,7 +73,7 @@ export default function Congratulation() {
         <View style={styles.ctnButton}>
           <Button
             text="Jump Into Log In"
-            stylesText={styles.textRegisterStyleActive}
+            stylesText={customTxt(Fonts.Bold, 18, '#FFFFFF').txt}
             viewStyle={styles.btnRegisterStyleActive}
             onPress={_onPressToLogin}
           />
@@ -77,6 +84,7 @@ export default function Congratulation() {
 
   return (
     <SafeAreaView style={styles.container}>
+      <StatusBar barStyle={'light-content'} backgroundColor="black" />
       <ScrollView style={styles.flex1}>{renderBody()}</ScrollView>
       {isLoading && <LoadingView />}
     </SafeAreaView>
@@ -86,7 +94,7 @@ export default function Congratulation() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#F4F6FA',
+    backgroundColor: '#010919',
   },
   flex1: {
     flex: 1,

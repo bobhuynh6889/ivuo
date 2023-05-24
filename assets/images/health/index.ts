@@ -9,6 +9,23 @@ const img = {
   ic_temp: require('./ic_temp.png'),
   ic_hrv: require('./ic_hrv.png'),
   ic_vo2: require('./ic_vo2.png'),
+  sleep_metric_chart: require('./sleep_metric_chart.png'),
+  ic_sleep_time: require('./ic_sleep_time.png'),
+  ic_fall_asleep: require('./ic_fall_asleep.png'),
+  ic_sleep_score: require('./ic_sleep_score.png'),
+  energy_chart: require('./energy_chart.png'),
+  activity_chart: require('./activity_chart.png'),
+  cricle_activity_chart: require('./cricle_activity_chart.png'),
+  ic_left: require('./ic_left.png'),
+  ic_right: require('./ic_right.png'),
+  heart_rate_chart: require('./heart_rate_chart.png'),
+  temperature_chart: require('./temperature_chart.png'),
+  heart_beat_chart: require('./heart_beat_chart.png'),
+  movement_chart: require('./movement_chart.png'),
+  body_temp_chart: require('./body_temp_chart.png'),
+  stress_chart: require('./stress_chart.png'),
+  comparison_chart: require('./comparison_chart.png'),
+  daily_movement_chart: require('./daily_movement_chart.png'),
 };
 
 export default img;

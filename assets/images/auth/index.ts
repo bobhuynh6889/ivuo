@@ -5,6 +5,8 @@ const img = {
   background: require('./background.png'),
   ic_congratulation: require('./ic_congratulation.png'),
   background_2: require('./background_2.png'),
+  splash_image: require('./splash_image.png'),
+  ring_image: require('./ring_image.png'),
 };
 
 export default img;

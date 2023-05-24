@@ -20,7 +20,7 @@ export default function SplashScreen() {
   }, []);
   return (
     <View style={styles.container}>
-      <StatusBar barStyle={'dark-content'} backgroundColor="#F4F6FA" />
+      <StatusBar barStyle={'light-content'} backgroundColor="#F4F6FA" />
       <View style={styles.ctnLogo}>
         <Animatable.View duration={1500} animation="pulse">
           <Image source={Logo.logo_splash} style={styles.logoStyle} />

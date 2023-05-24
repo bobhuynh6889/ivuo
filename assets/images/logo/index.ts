@@ -4,6 +4,7 @@ const img = {
   logo3: require('./logo3.png'),
   logo4: require('./logo4.png'),
   logo_splash: require('./logo_splash.png'),
+  logo_white: require('./logo_white.png'),
 };
 
 export default img;

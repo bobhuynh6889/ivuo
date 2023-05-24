@@ -8,13 +8,13 @@
 import React from 'react';
 import {View, StyleSheet} from 'react-native';
 
-// import RootNavigation from './src/navigation/AppNavigation';
-import BottomTabs from './src/navigation/BottomTabs';
+import RootNavigation from './src/navigation/AppNavigation';
+// import BottomTabs from './src/navigation/BottomTabs';
 
 function App(): JSX.Element {
   return (
     <View style={style.container}>
-      <BottomTabs />
+      <RootNavigation />
     </View>
   );
 }

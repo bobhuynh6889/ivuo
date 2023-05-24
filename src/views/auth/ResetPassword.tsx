@@ -12,13 +12,15 @@ import {
 import React, {useState} from 'react';
 
 // library
-import AntIcon from 'react-native-vector-icons/AntDesign';
+// import AntIcon from 'react-native-vector-icons/AntDesign';
 import FeatherIcon from 'react-native-vector-icons/Feather';
 
 // services
 import Routes from '../../navigation/Routes';
 import NavigationService from '../../navigation';
 import {colorPrimary} from '../../constants/color';
+import Fonts from '../../constants/Fonts';
+import {customTxt} from '../../constants/fontStyle';
 
 // component
 import Button from '../../components/Button';
@@ -43,11 +45,15 @@ export default function ResetPassword() {
   const renderTitle = () => {
     return (
       <View style={styles.ctnTitle}>
-        <Text style={styles.titleStyle}>Reset Your Password</Text>
-        <Text style={styles.contentStyle}>
+        <Text style={customTxt(Fonts.Bold, 24, '#FFFFFF').txt}>
+          Reset Your Password
+        </Text>
+        <Text style={customTxt(Fonts.SemiBold, 18, '#FFFFFF').txt}>
           At least 8 characters, with uppercase and
         </Text>
-        <Text style={styles.contentStyle}>lowercase letters.</Text>
+        <Text style={customTxt(Fonts.SemiBold, 18, '#FFFFFF').txt}>
+          lowercase letters.
+        </Text>
       </View>
     );
   };
@@ -62,24 +68,23 @@ export default function ResetPassword() {
     iconRight?: boolean,
   ) => {
     return (
-      <View style={value ? styles.ctnInputActive : styles.ctnInput}>
+      <View style={{marginBottom: 20}}>
         <View style={styles.ctnTitleInput}>
-          <AntIcon
-            name={iconName}
-            size={30}
-            color={value ? colorPrimary : '#A9A9A9CC'}
-          />
-          <Text style={{color: '#32343899', marginLeft: 8}}>{title}</Text>
+          <Text style={customTxt(Fonts.Bold, 16, '#FFFFFF').txt}>{title}</Text>
         </View>
         <View style={styles.ctnTextInput}>
           <View style={{flex: 1}}>
             <TextInput
               placeholder={placeholder}
-              style={[styles.textInputStyle, {width: '100%'}]}
+              style={[
+                customTxt(Fonts.SemiBold, 16, '#FFFFFF').txt,
+                {width: '100%'},
+              ]}
               value={value}
               onChangeText={(text: any) => setValue(text)}
               secureTextEntry={secureTextEntry || false}
               autoCapitalize={'none'}
+              placeholderTextColor={'#999999'}
             />
           </View>
           {iconRight && (
@@ -162,8 +167,8 @@ export default function ResetPassword() {
             text="Reset Password"
             stylesText={
               checkConfirmPass(password2)
-                ? styles.textRegisterStyleActive
-                : styles.textRegisterStyle
+                ? customTxt(Fonts.Bold, 18, '#FFFFFF').txt
+                : customTxt(Fonts.Bold, 18, '#A9A9A9').txt
             }
             viewStyle={
               checkConfirmPass(password2)
@@ -180,7 +185,7 @@ export default function ResetPassword() {
 
   return (
     <SafeAreaView style={styles.container}>
-      <StatusBar barStyle={'dark-content'} backgroundColor="black" />
+      <StatusBar barStyle={'light-content'} backgroundColor="black" />
       <ScrollView style={styles.flex1}>{renderBody()}</ScrollView>
       {isLoading && <LoadingView />}
     </SafeAreaView>
@@ -190,7 +195,7 @@ export default function ResetPassword() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#F4F6FA',
+    backgroundColor: '#010919',
   },
   flex1: {
     flex: 1,
@@ -291,11 +296,16 @@ const styles = StyleSheet.create({
   ctnTitleInput: {
     flexDirection: 'row',
     alignItems: 'center',
+    marginBottom: 6,
   },
   ctnTextInput: {
     flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'space-between',
+    backgroundColor: '#1A2230',
+    height: 52,
+    borderRadius: 8,
+    paddingHorizontal: 15,
   },
   ctnForm: {
     paddingHorizontal: 25,

@@ -14,13 +14,15 @@ import {
 import React, {useState} from 'react';
 
 // library
-import AntIcon from 'react-native-vector-icons/AntDesign';
+// import AntIcon from 'react-native-vector-icons/AntDesign';
 import FeatherIcon from 'react-native-vector-icons/Feather';
 
 // services
 import Routes from '../../navigation/Routes';
 import NavigationService from '../../navigation';
 import {colorPrimary} from '../../constants/color';
+import Fonts from '../../constants/Fonts';
+import {customTxt} from '../../constants/fontStyle';
 
 // component
 import Button from '../../components/Button';
@@ -47,8 +49,10 @@ export default function Login() {
   const renderTitle = () => {
     return (
       <View style={styles.ctnTitle}>
-        <Text style={styles.titleStyle}>Let’s Sign You In</Text>
-        <Text style={styles.contentStyle}>
+        <Text style={customTxt(Fonts.Bold, 24, '#FFFFFF').txt}>
+          Let’s Sign You In
+        </Text>
+        <Text style={customTxt(Fonts.SemiBold, 18, '#FFFFFF').txt}>
           Welcome back, you’ve been missed!
         </Text>
       </View>
@@ -65,24 +69,23 @@ export default function Login() {
     iconRight?: boolean,
   ) => {
     return (
-      <View style={value ? styles.ctnInputActive : styles.ctnInput}>
+      <View style={{marginBottom: 20}}>
         <View style={styles.ctnTitleInput}>
-          <AntIcon
-            name={iconName}
-            size={30}
-            color={value ? colorPrimary : '#A9A9A9CC'}
-          />
-          <Text style={{color: '#32343899', marginLeft: 8}}>{title}</Text>
+          <Text style={customTxt(Fonts.Bold, 16, '#FFFFFF').txt}>{title}</Text>
         </View>
         <View style={styles.ctnTextInput}>
           <View style={{flex: 1}}>
             <TextInput
               placeholder={placeholder}
-              style={[styles.textInputStyle, {width: '100%'}]}
+              style={[
+                customTxt(Fonts.SemiBold, 16, '#FFFFFF').txt,
+                {width: '100%'},
+              ]}
               value={value}
               onChangeText={(text: any) => setValue(text)}
               secureTextEntry={secureTextEntry || false}
               autoCapitalize={'none'}
+              placeholderTextColor={'#999999'}
             />
           </View>
           {iconRight && (
@@ -130,7 +133,7 @@ export default function Login() {
   const _onPressSignIn = () => {
     setLoading(true);
     setTimeout(() => {
-      NavigationService.navigate(Routes.HOME_SCREEN, {});
+      NavigationService.navigate(Routes.BOTTOM_TAB_SCREEN, {});
     }, 300);
   };
 
@@ -169,7 +172,7 @@ export default function Login() {
         <TouchableOpacity
           onPress={_onPressForgotPassword}
           style={styles.ctnForgotPass}>
-          <Text style={{color: '#525C67', fontSize: 14, fontWeight: '400'}}>
+          <Text style={customTxt(Fonts.SemiBold, 14, '#FFFFFF').txt}>
             Forgotten password?
           </Text>
         </TouchableOpacity>
@@ -177,8 +180,8 @@ export default function Login() {
           text="Sign In"
           stylesText={
             checkDisableBtnRegister()
-              ? styles.textRegisterStyle
-              : styles.textRegisterStyleActive
+              ? customTxt(Fonts.Bold, 18, '#A9A9A9').txt
+              : customTxt(Fonts.Bold, 18, '#FFFFFF').txt
           }
           viewStyle={
             checkDisableBtnRegister()
@@ -195,19 +198,20 @@ export default function Login() {
   const renderOtherLogin = () => {
     return (
       <View style={styles.ctnOtherLogin}>
-        <Text style={styles.contentStyle}>Or log in with</Text>
+        <Text style={customTxt(Fonts.Bold, 18, '#FFFFFF').txt}>
+          Or log in with
+        </Text>
         <View style={styles.ctnIconLogin}>
           <Image source={AuthImg.ic_google} style={styles.iconStyle} />
           <Image source={AuthImg.ic_apple} style={styles.iconApple} />
           <Image source={AuthImg.ic_linkedln} style={styles.iconStyle} />
         </View>
         <View style={styles.ctnBottomText}>
-          <Text style={{color: '#323438CC', marginRight: 4}}>
-            Don’t have an account?
+          <Text style={customTxt(Fonts.Regular, 16, '#FFFFFF').txt}>
+            Don’t have an account?{' '}
           </Text>
           <TouchableOpacity onPress={_onPressSignUp}>
-            <Text
-              style={{color: colorPrimary, fontWeight: '700', fontSize: 16}}>
+            <Text style={customTxt(Fonts.ExtraBold, 18, colorPrimary).txt}>
               Join us
             </Text>
           </TouchableOpacity>
@@ -228,7 +232,7 @@ export default function Login() {
   };
   return (
     <SafeAreaView style={styles.container}>
-      <StatusBar barStyle={'dark-content'} backgroundColor="black" />
+      <StatusBar barStyle={'light-content'} backgroundColor="black" />
       <KeyboardAvoidingView
         behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
         style={styles.keyboardStyle}>
@@ -242,7 +246,7 @@ export default function Login() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#F4F6FA',
+    backgroundColor: '#010919',
   },
   keyboardStyle: {
     width: '100%',
@@ -288,16 +292,20 @@ const styles = StyleSheet.create({
   ctnTitleInput: {
     flexDirection: 'row',
     alignItems: 'center',
+    marginBottom: 6,
   },
   ctnTextInput: {
     flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'space-between',
+    backgroundColor: '#1A2230',
+    height: 52,
+    borderRadius: 8,
+    paddingHorizontal: 15,
   },
   textInputStyle: {
-    marginTop: 13,
     fontSize: 16,
-    color: '#323438',
+    color: '#FFFFFF',
     fontWeight: '600',
   },
   ctnForm: {

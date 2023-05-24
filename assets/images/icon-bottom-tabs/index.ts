@@ -8,6 +8,7 @@ const img = {
   ic_marketplace_active: require('./ic_marketplace_active.png'),
   ic_marketplace: require('./ic_marketplace.png'),
   ic_profile: require('./ic_profile.png'),
+  ic_profile_active: require('./ic_profile_active.png'),
 };
 
 export default img;

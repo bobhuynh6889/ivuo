@@ -14,6 +14,22 @@ import ForgotPasswordScreen from '../views/auth/ForgotPassword';
 import OTPAuthenScreen from '../views/auth/OTPAuthen';
 import ResetPasswordScreen from '../views/auth/ResetPassword';
 import CongratulationScreen from '../views/auth/Congratulation';
+import NotificationScreen from '../views/notification';
+import BottomTabs from '../views/BottomTab';
+import DetailScreen from '../views/notification/Detail';
+import SettingScreen from '../views/profile/subScreens/Setting';
+import LanguageScreen from '../views/profile/subScreens/Language';
+import PersonalInfoScreen from '../views/profile/subScreens/PersonalInfo';
+import AccessDetailsScreen from '../views/profile/subScreens/AccessDetails';
+import GuardianScreen from '../views/profile/subScreens/Guardian';
+import FamilyDoctorScreen from '../views/profile/subScreens/FamilyDoctor';
+import PreferencesScreen from '../views/profile/subScreens/Preferences';
+import RegisterByPhoneScreen from '../views/auth/RegisterByPhone';
+import DisabilityCareScreen from '../views/marketplace/subtoptab/detailsScreen/DisabilityCare';
+import LegalScreen from '../views/profile/subScreens/Legal';
+import PrivacyScreen from '../views/profile/subScreens/Privacy';
+import TermScreen from '../views/profile/subScreens/Term';
+import DisclaimerScreen from '../views/profile/subScreens/Disclaimer';
 
 export default function RootNavigation() {
   useEffect(() => {
@@ -27,7 +43,7 @@ export default function RootNavigation() {
         screenOptions={{
           headerShown: false,
         }}
-        initialRouteName={Routes.HOME_SCREEN}>
+        initialRouteName={Routes.BOTTOM_TAB_SCREEN}>
         <Stack.Screen name={Routes.SPLASH_SCREEN} component={SplashScreen} />
         <Stack.Screen name={Routes.FIRST_SCREEN} component={FirstScreen} />
         <Stack.Screen
@@ -48,6 +64,55 @@ export default function RootNavigation() {
         <Stack.Screen
           name={Routes.CONGRATULATION_SCREEN}
           component={CongratulationScreen}
+        />
+        <Stack.Screen
+          name={Routes.NOTIFICATION_SCREEN}
+          component={NotificationScreen}
+        />
+        <Stack.Screen name={Routes.BOTTOM_TAB_SCREEN} component={BottomTabs} />
+        <Stack.Screen
+          name={Routes.DETAIL_NOTI_SCREEN}
+          component={DetailScreen}
+        />
+        <Stack.Screen name={Routes.SETTING_SCREEN} component={SettingScreen} />
+        <Stack.Screen
+          name={Routes.LANGUAGE_SCREEN}
+          component={LanguageScreen}
+        />
+        <Stack.Screen
+          name={Routes.PERSONAL_INFO_SCREEN}
+          component={PersonalInfoScreen}
+        />
+        <Stack.Screen
+          name={Routes.ACCESS_DETAILS_SCREEN}
+          component={AccessDetailsScreen}
+        />
+        <Stack.Screen
+          name={Routes.GUARDIAN_SCREEN}
+          component={GuardianScreen}
+        />
+        <Stack.Screen
+          name={Routes.FAMILY_DOCTOR_SCREEN}
+          component={FamilyDoctorScreen}
+        />
+        <Stack.Screen
+          name={Routes.PREFERENCES_SCREEN}
+          component={PreferencesScreen}
+        />
+        <Stack.Screen
+          name={Routes.REGISTER_BY_PHONE_SCREEN}
+          component={RegisterByPhoneScreen}
+        />
+        <Stack.Screen
+          name={Routes.DISABILITY_CARE_SCREEN}
+          component={DisabilityCareScreen}
+        />
+        <Stack.Screen name={Routes.LEGAL_SCREEN} component={LegalScreen} />
+        <Stack.Screen name={Routes.PRIVACY_SCREEN} component={PrivacyScreen} />
+        <Stack.Screen name={Routes.TERM_SCREEN} component={TermScreen} />
+        <Stack.Screen
+          name={Routes.DISCLAIMER_SCREEN}
+          component={DisclaimerScreen}
         />
       </Stack.Navigator>
     </NavigationContainer>

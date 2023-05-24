@@ -10,20 +10,20 @@ import {
   FlatList,
   Dimensions,
 } from 'react-native';
-import React from 'react';
+import React, {useState} from 'react';
 
 //libary
-import IconBell from 'react-native-vector-icons/FontAwesome';
 import {LineChart} from 'react-native-chart-kit';
 
 //in source
 import {customTxt} from '../../constants/fontStyle';
 import Fonts from '../../constants/Fonts';
 import DataHealth from './dataHealth';
-
+import NotiView from '../../components/NotiView';
+import NavigationService from '../../navigation';
+import Routes from '../../navigation/Routes';
 //icon & image
 import HomeImg from '../../../assets/images/home';
-import HealthIcon from '../../../assets/images/health';
 
 const ItemBlock = ({item}) => {
   const checkBGCStatus = () => {
@@ -47,7 +47,7 @@ const ItemBlock = ({item}) => {
   return (
     <TouchableOpacity style={styles.ctnBlockHealth}>
       <Image source={item?.icon} style={styles.styleIconHealth} />
-      <Text style={customTxt(Fonts.SemiBold, 14, '#B0B0B0').txt}>
+      <Text style={customTxt(Fonts.SemiBold, 14, '#FFFFFF').txt}>
         {item?.title}
       </Text>
       <View style={{flexDirection: 'row'}}>
@@ -81,6 +81,13 @@ const ItemBlock = ({item}) => {
 };
 
 export default function Home() {
+  const [isShowNoti, setShowNoti] = useState(false);
+  const [isShowBadge, setShowBadge] = useState(false);
+
+  const _onPressIconNoti = () => {
+    NavigationService.navigate(Routes.NOTIFICATION_SCREEN, {});
+  };
+
   const renderHeader = () => {
     return (
       <View style={styles.ctnHeader}>
@@ -89,16 +96,31 @@ export default function Home() {
             <Image source={HomeImg.avatar} style={styles.styleAvatar} />
             <Text style={customTxt(Fonts.Regular, 18, 'white').txt}>Mom</Text>
           </View>
-          <IconBell name={'bell'} color={'white'} size={21} />
+          <TouchableOpacity
+            onPress={_onPressIconNoti}
+            style={styles.ctnIconNoti}>
+            <Image source={HomeImg.ic_bell} style={styles.styleBell} />
+            {isShowBadge && (
+              <View style={styles.ctnBadge}>
+                <Text style={customTxt(Fonts.Bold, 11, 'white').txt}>1</Text>
+              </View>
+            )}
+          </TouchableOpacity>
         </View>
         <View style={styles.headerLine1}>
           <View>
             <Text style={customTxt(Fonts.Bold, 20).txt}>Health Insights</Text>
-            <Text style={customTxt(Fonts.SemiBold, 13, '#999999').txt}>
+            <Text style={customTxt(Fonts.SemiBold, 13, '#FFFFFF').txt}>
               Last Sync: 09:54am, Today
             </Text>
           </View>
-          <Image source={HomeImg.ic_sync} style={styles.styleIcSync} />
+          <TouchableOpacity
+            onPress={() => {
+              setShowNoti(true);
+              setShowBadge(true);
+            }}>
+            <Image source={HomeImg.ic_sync} style={styles.styleIcSync} />
+          </TouchableOpacity>
         </View>
       </View>
     );
@@ -154,7 +176,7 @@ export default function Home() {
             backgroundGradientFrom: '#111111',
             backgroundGradientTo: '#111111',
           }}
-          style={{paddingRight: 20}}
+          style={{left: 0, right: 0}}
         />
       </View>
     );
@@ -163,28 +185,35 @@ export default function Home() {
   const renderHealthStatusChart = () => {
     return (
       <View style={styles.ctnChart}>
-        <View style={[styles.headerLine1, {marginBottom: 12}]}>
+        <View
+          style={[
+            styles.headerLine1,
+            {marginBottom: 12, marginHorizontal: 20},
+          ]}>
           <View>
             <Text style={customTxt(Fonts.Bold, 20).txt}>Health Status</Text>
-            <Text style={customTxt(Fonts.SemiBold, 13, '#999999').txt}>
+            <Text style={customTxt(Fonts.SemiBold, 13, '#FFFFFF').txt}>
               10 April to 16 April
             </Text>
           </View>
         </View>
-        <View style={styles.ctnNotiChart}>
+        <View style={[styles.ctnNotiChart, {marginHorizontal: 20}]}>
           <Image source={HomeImg.ic_chart} style={styles.styleIcChart} />
           <Text style={customTxt(Fonts.SemiBold, 13, '#D8D8D8').txt}>
             Body stress levels versus your baseline metrics
           </Text>
         </View>
-        {renderChartBaseline()}
+        {/* {renderChartBaseline()} */}
         <View>
+          <Image source={HomeImg.chart} style={styles.styleChart} />
+        </View>
+        <View style={{marginHorizontal: 20}}>
           <Text style={customTxt(Fonts.SemiBold, 13, '#FFFFFF').txt}>
             REPORT
           </Text>
           <Text
             style={[
-              customTxt(Fonts.Medium, 13, '#868686').txt,
+              customTxt(Fonts.Medium, 13, '#FFFFFF').txt,
               {marginTop: 8},
             ]}>
             There were mostly normal levels, with occasional slight elevations
@@ -205,7 +234,7 @@ export default function Home() {
           BODY TEMPERATURE
         </Text>
         <Text
-          style={[customTxt(Fonts.Medium, 13, '#868686').txt, {marginTop: 4}]}>
+          style={[customTxt(Fonts.Medium, 13, '#FFFFFF').txt, {marginTop: 4}]}>
           We have detected an irregularity in body temperature
         </Text>
         <View style={styles.ctnBtnReadMore}>
@@ -227,7 +256,7 @@ export default function Home() {
         <Text style={customTxt(Fonts.SemiBold, 16).txt}>Meals on Wheels</Text>
         <Text
           style={[
-            customTxt(Fonts.SemiBold, 13, '#999999').txt,
+            customTxt(Fonts.SemiBold, 13, '#FFFFFF').txt,
             {marginTop: 4},
           ]}>
           We deliver specialised meals catered for your exact diary needs, 7
@@ -289,6 +318,13 @@ export default function Home() {
     <SafeAreaView style={styles.container}>
       <StatusBar barStyle={'light-content'} backgroundColor="#111111" />
       <ScrollView>{renderBody()}</ScrollView>
+      {isShowNoti && (
+        <NotiView
+          onClose={() => {
+            setShowNoti(false);
+          }}
+        />
+      )}
     </SafeAreaView>
   );
 }
@@ -348,7 +384,7 @@ const styles = StyleSheet.create({
   },
   ctnChart: {
     marginTop: 18,
-    marginHorizontal: 20,
+    // marginHorizontal: 20,
   },
   styleIcChart: {
     height: 13,
@@ -419,5 +455,28 @@ const styles = StyleSheet.create({
     backgroundColor: '#5A5D60',
     borderRadius: 42,
     marginTop: 14,
+  },
+  ctnBadge: {
+    backgroundColor: '#E82C2C',
+    justifyContent: 'center',
+    alignItems: 'center',
+    height: 16,
+    width: 16,
+    borderRadius: 8,
+    borderWidth: 2,
+    borderColor: '#000000',
+    marginLeft: -12,
+    marginTop: -3,
+  },
+  ctnIconNoti: {
+    flexDirection: 'row',
+  },
+  styleBell: {
+    height: 25,
+    width: 25,
+  },
+  styleChart: {
+    height: 280,
+    width: Dimensions.get('screen').width,
   },
 });

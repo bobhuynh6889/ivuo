@@ -1,25 +1,31 @@
 /* eslint-disable react/no-unstable-nested-components */
 /* eslint-disable react/react-in-jsx-scope */
-import {Image, Text} from 'react-native';
+import React, {useState} from 'react';
+import {Image, Text, View, TouchableWithoutFeedback} from 'react-native';
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
-import {NavigationContainer} from '@react-navigation/native';
-import {customTxt} from '../constants/fontStyle';
-import Fonts from '../constants/Fonts';
-
 const Tab = createBottomTabNavigator();
 
-import HomeScreen from '../views/home';
-import HealthScreen from '../views/health';
-import JournalScreen from '../views/journal';
-import MarketplaceScreen from '../views/marketplace';
-import ProfileScreen from '../views/profile';
+// main tab
+import HomeScreen from './home';
+import HealthScreen from './health';
+import JournalScreen from './journal';
+import MarketplaceScreen from './marketplace';
+import ProfileScreen from './profile';
+
+// in source
+import Intro from '../views/journal/Intro';
+import NavigationService from '../navigation';
+import Routes from '../navigation/Routes';
+import {customTxt} from '../constants/fontStyle';
+import Fonts from '../constants/Fonts';
 
 //icon
 import Icon from '../../assets/images/icon-bottom-tabs';
 
 export default function BottomTabs() {
+  const [journal, setJournal] = useState(0);
   return (
-    <NavigationContainer>
+    <View style={{flex: 1}}>
       <Tab.Navigator
         screenOptions={{
           tabBarStyle: {
@@ -87,13 +93,23 @@ export default function BottomTabs() {
         <Tab.Screen
           options={{
             tabBarLabel: ({focused}) => (
-              <Text
-                style={
-                  customTxt(Fonts.Regular, 12, focused ? '#007CCB' : '#999999')
-                    .txt
-                }>
-                Journal
-              </Text>
+              <TouchableWithoutFeedback
+                onPress={() => {
+                  NavigationService.navigate('Journal', {});
+                  setJournal(1);
+                }}>
+                <Text
+                  style={
+                    customTxt(
+                      Fonts.Regular,
+                      12,
+                      focused ? '#007CCB' : '#999999',
+                    ).txt
+                  }>
+                  Journal
+                </Text>
+                {}
+              </TouchableWithoutFeedback>
             ),
             tabBarIcon: ({focused}) => {
               return focused ? (
@@ -102,10 +118,16 @@ export default function BottomTabs() {
                   style={{height: 20, width: 20}}
                 />
               ) : (
-                <Image
-                  source={Icon.ic_journal}
-                  style={{height: 20, width: 20}}
-                />
+                <TouchableWithoutFeedback
+                  onPress={() => {
+                    NavigationService.navigate('Journal', {});
+                    setJournal(1);
+                  }}>
+                  <Image
+                    source={Icon.ic_journal}
+                    style={{height: 20, width: 20}}
+                  />
+                </TouchableWithoutFeedback>
               );
             },
           }}
@@ -154,7 +176,7 @@ export default function BottomTabs() {
             tabBarIcon: ({focused}) => {
               return focused ? (
                 <Image
-                  source={Icon.ic_profile}
+                  source={Icon.ic_profile_active}
                   style={{height: 20, width: 20}}
                 />
               ) : (
@@ -169,6 +191,15 @@ export default function BottomTabs() {
           component={ProfileScreen}
         />
       </Tab.Navigator>
-    </NavigationContainer>
+      {journal === 1 && (
+        <View style={{width: '100%', height: '100%', position: 'absolute'}}>
+          <Intro
+            onPressComplete={() => {
+              setJournal(0);
+            }}
+          />
+        </View>
+      )}
+    </View>
   );
 }

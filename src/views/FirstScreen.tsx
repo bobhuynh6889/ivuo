@@ -1,4 +1,12 @@
-import {StyleSheet, ImageBackground, StatusBar, View, Text} from 'react-native';
+import {
+  StyleSheet,
+  ImageBackground,
+  StatusBar,
+  View,
+  Text,
+  Image,
+  Dimensions,
+} from 'react-native';
 import React from 'react';
 
 // in source
@@ -13,15 +21,22 @@ import Fonts from '../constants/Fonts';
 
 //img
 import AuthImg from '../../assets/images/auth';
+import Logo from '../../assets/images/logo';
 
 export default function FirstScreen() {
   return (
     <ImageBackground
-      source={AuthImg.background_2}
+      source={AuthImg.splash_image}
       resizeMode="cover"
       style={styles.container}>
-      <StatusBar barStyle={'dark-content'} backgroundColor="black" />
+      <StatusBar barStyle={'light-content'} backgroundColor="black" />
       <View style={{flex: 1, justifyContent: 'flex-end', alignItems: 'center'}}>
+        <View>
+          <Image source={AuthImg.ring_image} style={styles.styleRing} />
+        </View>
+        <View>
+          <Image source={Logo.logo_white} style={styles.stylelogo} />
+        </View>
         <Text style={customTxt(Fonts.ExtraBold, 24, '#FFFFFF').txt}>
           FROM IUVO
         </Text>
@@ -183,5 +198,15 @@ const styles = StyleSheet.create({
     paddingVertical: 16,
     borderRadius: 42,
     marginTop: 40,
+  },
+  styleRing: {
+    height: 292,
+    width: Dimensions.get('screen').width,
+    marginBottom: 50,
+  },
+  stylelogo: {
+    height: 75,
+    width: Dimensions.get('screen').width - 176,
+    marginBottom: 20,
   },
 });

@@ -13,6 +13,8 @@ import React, {useEffect, useState} from 'react';
 import Routes from '../../navigation/Routes';
 import NavigationService from '../../navigation';
 import {colorPrimary} from '../../constants/color';
+import Fonts from '../../constants/Fonts';
+import {customTxt} from '../../constants/fontStyle';
 
 // component
 import Button from '../../components/Button';
@@ -40,11 +42,23 @@ export default function OTPAuthen() {
   const renderTitle = () => {
     return (
       <View style={styles.ctnTitle}>
-        <Text style={styles.titleStyle}>Verification</Text>
-        <Text style={styles.contentStyle}>
-          Enter your verification code that we sent you
+        <Text style={customTxt(Fonts.Bold, 24, '#FFFFFF').txt}>
+          Verification
         </Text>
-        <Text style={styles.contentStyle}>through your e-mail.</Text>
+        <Text
+          style={[
+            customTxt(Fonts.SemiBold, 18, '#FFFFFF').txt,
+            {textAlign: 'center'},
+          ]}>
+          Enter your verification code that we sent
+        </Text>
+        <Text
+          style={[
+            customTxt(Fonts.SemiBold, 18, '#FFFFFF').txt,
+            {textAlign: 'center'},
+          ]}>
+          you through your e-mail.
+        </Text>
       </View>
     );
   };
@@ -52,7 +66,9 @@ export default function OTPAuthen() {
   const renderInputItem = (value: any) => {
     return (
       <View style={styles.ctnInputItem}>
-        <Text style={styles.textInputStyle}>{value}</Text>
+        <Text style={customTxt(Fonts.SemiBold, 16, '#FFFFFF').txt}>
+          {value}
+        </Text>
       </View>
     );
   };
@@ -113,9 +129,12 @@ export default function OTPAuthen() {
             keyboardType={'number-pad'}
           />
           <Text
-            style={[{textAlign: 'center', marginTop: 24}, styles.contentStyle]}>
+            style={[
+              {textAlign: 'center', marginTop: 24},
+              customTxt(Fonts.Regular, 16, '#FFFFFF').txt,
+            ]}>
             Didn’t receive code.{' '}
-            <Text style={{color: colorPrimary, fontWeight: '700'}}>
+            <Text style={customTxt(Fonts.Bold, 18, colorPrimary).txt}>
               Resend Code
             </Text>
           </Text>
@@ -125,8 +144,8 @@ export default function OTPAuthen() {
             text="Continue"
             stylesText={
               checkDisable()
-                ? styles.textRegisterStyle
-                : styles.textRegisterStyleActive
+                ? customTxt(Fonts.Bold, 18, '#A9A9A9').txt
+                : customTxt(Fonts.Bold, 18, '#FFFFFF').txt
             }
             viewStyle={
               checkDisable()
@@ -152,7 +171,7 @@ export default function OTPAuthen() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#F4F6FA',
+    backgroundColor: '#010919',
   },
   flex1: {
     flex: 1,
@@ -182,7 +201,7 @@ const styles = StyleSheet.create({
   ctnInputItem: {
     height: 65,
     width: 65,
-    backgroundColor: '#ededf2',
+    backgroundColor: '#1A2230',
     borderWidth: 1,
     borderColor: '#CFD0D7',
     borderRadius: 10,

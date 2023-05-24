@@ -1,7 +1,5 @@
 import React from 'react';
 import {View, Text, TouchableOpacity, StyleSheet} from 'react-native';
-// import { customTxt } from '../constants/css'
-// import Fonts from '../constants/Fonts'
 interface customButtonProps {
   backgroundColor?: any;
   onPress?: Function | any;
