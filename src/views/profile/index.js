@@ -43,6 +43,9 @@ const dataSetting = [
   {
     icon: ProfileAssets.ic_software,
     title: 'Software',
+    onPress: () => {
+      NavigationService.navigate(Routes.SOFTWARE_SCREEN, {});
+    },
   },
 ];
 

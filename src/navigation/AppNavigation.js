@@ -30,6 +30,8 @@ import LegalScreen from '../views/profile/subScreens/Legal';
 import PrivacyScreen from '../views/profile/subScreens/Privacy';
 import TermScreen from '../views/profile/subScreens/Term';
 import DisclaimerScreen from '../views/profile/subScreens/Disclaimer';
+import SoftwareScreen from '../views/profile/subScreens/Software';
+import HardwareScreen from '../views/profile/subScreens/Hardware';
 
 export default function RootNavigation() {
   useEffect(() => {
@@ -113,6 +115,14 @@ export default function RootNavigation() {
         <Stack.Screen
           name={Routes.DISCLAIMER_SCREEN}
           component={DisclaimerScreen}
+        />
+        <Stack.Screen
+          name={Routes.SOFTWARE_SCREEN}
+          component={SoftwareScreen}
+        />
+        <Stack.Screen
+          name={Routes.HARDWARE_SCREEN}
+          component={HardwareScreen}
         />
       </Stack.Navigator>
     </NavigationContainer>
